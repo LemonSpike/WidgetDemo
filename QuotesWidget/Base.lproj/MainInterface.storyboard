@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="QuotesWidget" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ft6-oW-KC0"/>
+                        <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMg-Sg-4pX">
+                                <rect key="frame" x="24" y="46" width="272" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hG-2C-N8f">
+                                <rect key="frame" x="254" y="71" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jAh-cU-C7u">
+                                <rect key="frame" x="98" y="8" width="125" height="31"/>
+                                <segments>
+                                    <segment title="Movies"/>
+                                    <segment title="Famous"/>
+                                </segments>
+                                <connections>
+                                    <action selector="modeChanged:" destination="M4Y-Lb-cyx" eventType="valueChanged" id="Mzk-XK-lyC"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="3hG-2C-N8f" secondAttribute="bottom" constant="8" id="4GS-Ic-FTd"/>
+                            <constraint firstItem="3hG-2C-N8f" firstAttribute="top" secondItem="SMg-Sg-4pX" secondAttribute="bottom" constant="4" id="TcY-HR-yrT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SMg-Sg-4pX" secondAttribute="trailing" constant="8" id="U4F-oB-Qem"/>
+                            <constraint firstItem="jAh-cU-C7u" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="8" id="dWx-xz-C6T"/>
+                            <constraint firstItem="jAh-cU-C7u" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="gFG-61-WXw"/>
+                            <constraint firstItem="SMg-Sg-4pX" firstAttribute="top" secondItem="jAh-cU-C7u" secondAttribute="bottom" constant="8" id="gKQ-y9-PP3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3hG-2C-N8f" secondAttribute="trailing" constant="8" id="pMI-aC-1s4"/>
+                            <constraint firstItem="SMg-Sg-4pX" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="8" id="xCo-az-hdt"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="100"/>
+                    <connections>
+                        <outlet property="authorLabel" destination="3hG-2C-N8f" id="10J-4z-OTz"/>
+                        <outlet property="quoteLabel" destination="SMg-Sg-4pX" id="N60-Xn-Mc3"/>
+                        <outlet property="segmentedControl" destination="jAh-cU-C7u" id="m91-di-IMP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="516" y="285"/>
+        </scene>
+    </scenes>
+</document>

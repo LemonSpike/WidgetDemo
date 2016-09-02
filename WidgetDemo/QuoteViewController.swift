@@ -7,15 +7,16 @@
 //
 
 import UIKit
+import QuotesNetworking
 
 class QuoteViewController: UIViewController {
-
+    
     @IBOutlet weak var quoteLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let networking = Networking()
-
+    
     override func viewDidAppear(animated: Bool) {
         getNewQuote()
     }
