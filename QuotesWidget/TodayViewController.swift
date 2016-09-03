@@ -80,11 +80,33 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     override func viewDidLoad() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector("userDefaultsDidChange(_:)"), name:NSUserDefaultsDidChangeNotification, object:nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(userDefaultsDidChange(_:)), name:NSUserDefaultsDidChangeNotification, object:nil)
     }
     
     func userDefaultsDidChange(notification: NSNotification) {
         // check updatedDate and update widget UI
+        self.updateLabelsText()
+    }
+    
+    func updateLabelsText() {
+        let defaults = NSUserDefaults(suiteName: "group.com.careerfoundry.widgetDemo.QuotesNetworking")
+        let moviesQuoteString = defaults?.objectForKey("moviesQuoteString") as? String
+        let moviesQuoteAuthor = defaults?.objectForKey("moviesQuoteAuthor") as? String
+        let famousQuoteString = defaults?.objectForKey("famousQuoteString") as? String
+        let famousQuoteAuthor = defaults?.objectForKey("famousQuoteAuthor") as? String
+        if ((moviesQuoteString != nil && moviesQuoteAuthor != nil && segmentedControl.selectedSegmentIndex==0) || (famousQuoteString != nil && famousQuoteAuthor != nil && segmentedControl.selectedSegmentIndex==1)) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            self.quoteLabel.text=moviesQuoteString!
+            self.authorLabel.text=moviesQuoteAuthor!
+        case 1:
+            self.quoteLabel.text=famousQuoteString!
+            self.authorLabel.text=famousQuoteAuthor!
+        default:
+            self.quoteLabel.text=moviesQuoteString!
+            self.authorLabel.text=moviesQuoteAuthor!
+        }
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -67,6 +67,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4EDDF93D1D7AF2730046A075 /* WidgetDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WidgetDemo.entitlements; sourceTree = "<group>"; };
+		4EDDF93E1D7AF2D60046A075 /* QuotesWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = QuotesWidget.entitlements; sourceTree = "<group>"; };
 		4EEC493A1D79B778008218E5 /* QuotesWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QuotesWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EEC493C1D79B778008218E5 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		4EEC493F1D79B778008218E5 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		4EEC493E1D79B778008218E5 /* QuotesWidget */ = {
 			isa = PBXGroup;
 			children = (
+				4EDDF93E1D7AF2D60046A075 /* QuotesWidget.entitlements */,
 				4EEC493F1D79B778008218E5 /* TodayViewController.swift */,
 				4EEC49411D79B778008218E5 /* MainInterface.storyboard */,
 				4EEC49441D79B778008218E5 /* Info.plist */,
@@ -167,6 +170,7 @@
 		5443E7571D216976004E41AE /* WidgetDemo */ = {
 			isa = PBXGroup;
 			children = (
+				4EDDF93D1D7AF2730046A075 /* WidgetDemo.entitlements */,
 				5443E7581D216976004E41AE /* AppDelegate.swift */,
 				5443E75A1D216976004E41AE /* QuoteViewController.swift */,
 				5443E75C1D216976004E41AE /* Main.storyboard */,
@@ -259,9 +263,10 @@
 				TargetAttributes = {
 					4EEC49391D79B778008218E5 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = C3BX32XR8J;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -270,6 +275,12 @@
 					};
 					5443E7541D216976004E41AE = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = C3BX32XR8J;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -394,13 +405,14 @@
 		4EEC49481D79B778008218E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = QuotesWidget/QuotesWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = QuotesWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.careerfoundry.WidgetDemo.QuotesWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -408,13 +420,14 @@
 		4EEC49491D79B778008218E5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = QuotesWidget/QuotesWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = QuotesWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.careerfoundry.WidgetDemo.QuotesWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -548,6 +561,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WidgetDemo/WidgetDemo.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = WidgetDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -560,6 +574,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WidgetDemo/WidgetDemo.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = WidgetDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -578,6 +593,7 @@
 				4EEC49491D79B778008218E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4EEC495A1D79BA9A008218E5 /* Build configuration list for PBXNativeTarget "QuotesNetworking" */ = {
 			isa = XCConfigurationList;
@@ -586,6 +602,7 @@
 				4EEC495C1D79BA9A008218E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5443E7501D216976004E41AE /* Build configuration list for PBXProject "WidgetDemo" */ = {
 			isa = XCConfigurationList;

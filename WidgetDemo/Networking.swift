@@ -28,8 +28,9 @@ public class Networking: NSObject {
             do {
                 let jsonResponse = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! [String:String]
                 let quote = Quote(quoteDictionary: jsonResponse)
-                let userDefaults = NSUserDefaults(suiteName: "com.careerfoundry.widgetDemo.QuotesNetworking")
-                userDefaults!.setObject(quote, forKey:"moviesQuote")
+                let userDefaults = NSUserDefaults(suiteName: "group.com.careerfoundry.widgetDemo.QuotesNetworking")
+                userDefaults!.setObject(quote.text, forKey:"moviesQuoteString")
+                userDefaults!.setObject(quote.author, forKey:"moviesQuoteAuthor")
                 userDefaults?.synchronize()
                 completion(quote: quote, error: nil)
             } catch {
@@ -58,8 +59,9 @@ public class Networking: NSObject {
             do {
                 let jsonResponse = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! [String:String]
                 let quote = Quote(quoteDictionary: jsonResponse)
-                let userDefaults = NSUserDefaults(suiteName: "com.careerfoundry.widgetDemo.QuotesNetworking")
-                userDefaults!.setObject(quote, forKey:"famousQuote")
+                let userDefaults = NSUserDefaults(suiteName: "group.com.careerfoundry.widgetDemo.QuotesNetworking")
+                userDefaults!.setObject(quote.text, forKey:"famousQuoteString")
+                userDefaults!.setObject(quote.author, forKey:"famousQuoteAuthor")
                 userDefaults?.synchronize()
                 completion(quote: quote, error: nil)
             } catch {
