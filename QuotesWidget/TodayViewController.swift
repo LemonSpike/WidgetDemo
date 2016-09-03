@@ -22,23 +22,29 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         case 0:
             networking.randomMoviesQuote { (quote, error) in
                 if let quote = quote {
-                    self.quoteLabel.text = quote.text
-                    self.authorLabel.text = quote.author
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.quoteLabel.text = quote.text
+                        self.authorLabel.text = quote.author
+                    }
                 }
             }
         case 1:
             networking.randomFamousQuote { (quote, error) in
                 if let quote = quote {
-                    self.quoteLabel.text = quote.text
-                    self.authorLabel.text = quote.author
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.quoteLabel.text = quote.text
+                        self.authorLabel.text = quote.author
+                    }
                 }
                 
             }
         default:
             networking.randomMoviesQuote { (quote, error) in
                 if let quote = quote {
-                    self.quoteLabel.text = quote.text
-                    self.authorLabel.text = quote.author
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.quoteLabel.text = quote.text
+                        self.authorLabel.text = quote.author
+                    }
                 }
             }
         }
@@ -54,29 +60,54 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         self.quoteLabel.text = nil
         self.authorLabel.text = nil
         
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            networking.randomMoviesQuote { (quote, error) in
-                if let quote = quote {
-                    self.quoteLabel.text = quote.text
-                    self.authorLabel.text = quote.author
-                }
+        let userDefaults = NSUserDefaults(suiteName: "group.com.careerfoundry.widgetDemo.QuotesNetworking")
+        let index = userDefaults?.integerForKey("segmentedControlIndex")
+        if index != nil {
+            segmentedControl.selectedSegmentIndex=index!
+            if index==0 {
+                self.quoteLabel.text = (userDefaults?.objectForKey("moviesQuoteString") as? String)!
+                self.authorLabel.text = (userDefaults?.objectForKey("moviesQuoteAuthor") as? String)!
+            } else if index==1 {
+                self.quoteLabel.text = (userDefaults?.objectForKey("famousQuoteString") as? String)!
+                self.authorLabel.text = (userDefaults?.objectForKey("famousQuoteAuthor") as? String)!
             }
-        case 1:
-            networking.randomFamousQuote { (quote, error) in
-                if let quote = quote {
-                    self.quoteLabel.text = quote.text
-                    self.authorLabel.text = quote.author
+        } else {
+            switch segmentedControl.selectedSegmentIndex {
+            case 0:
+                networking.randomMoviesQuote { (quote, error) in
+                    if let quote = quote {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.quoteLabel.text = quote.text
+                            self.authorLabel.text = quote.author
+                        }
+                    }
                 }
-            }
-        default:
-            networking.randomMoviesQuote { (quote, error) in
-                if let quote = quote {
-                    self.quoteLabel.text = quote.text
-                    self.authorLabel.text = quote.author
+            case 1:
+                networking.randomFamousQuote { (quote, error) in
+                    if let quote = quote {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.quoteLabel.text = quote.text
+                            self.authorLabel.text = quote.author
+                        }
+                    }
+                }
+            default:
+                networking.randomMoviesQuote { (quote, error) in
+                    if let quote = quote {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.quoteLabel.text = quote.text
+                            self.authorLabel.text = quote.author
+                        }
+                    }
                 }
             }
         }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        let index=self.segmentedControl.selectedSegmentIndex
+        let userDefaults = NSUserDefaults(suiteName: "group.com.careerfoundry.widgetDemo.QuotesNetworking")
+        userDefaults!.setInteger(index, forKey:"segmentedControlIndex")
     }
     
     override func viewDidLoad() {
@@ -95,17 +126,23 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         let famousQuoteString = defaults?.objectForKey("famousQuoteString") as? String
         let famousQuoteAuthor = defaults?.objectForKey("famousQuoteAuthor") as? String
         if ((moviesQuoteString != nil && moviesQuoteAuthor != nil && segmentedControl.selectedSegmentIndex==0) || (famousQuoteString != nil && famousQuoteAuthor != nil && segmentedControl.selectedSegmentIndex==1)) {
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            self.quoteLabel.text=moviesQuoteString!
-            self.authorLabel.text=moviesQuoteAuthor!
-        case 1:
-            self.quoteLabel.text=famousQuoteString!
-            self.authorLabel.text=famousQuoteAuthor!
-        default:
-            self.quoteLabel.text=moviesQuoteString!
-            self.authorLabel.text=moviesQuoteAuthor!
-        }
+            switch segmentedControl.selectedSegmentIndex {
+            case 0:
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.quoteLabel.text=moviesQuoteString!
+                    self.authorLabel.text=moviesQuoteAuthor!
+                }
+            case 1:
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.quoteLabel.text=famousQuoteString!
+                    self.authorLabel.text=famousQuoteAuthor!
+                }
+            default:
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.quoteLabel.text=moviesQuoteString!
+                    self.authorLabel.text=moviesQuoteAuthor!
+                }
+            }
         }
     }
     
@@ -122,9 +159,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     completionHandler(.Failed)
                     return
                 }
+                dispatch_async(dispatch_get_main_queue()) {
                 self.quoteLabel.text = quote.text
                 self.authorLabel.text = quote.author
                 completionHandler(.NewData)
+                }
             }
         case 1:
             networking.randomFamousQuote { (quote, error) in
@@ -132,9 +171,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     completionHandler(.Failed)
                     return
                 }
+                dispatch_async(dispatch_get_main_queue()) {
                 self.quoteLabel.text = quote.text
                 self.authorLabel.text = quote.author
                 completionHandler(.NewData)
+                }
             }
         default:
             networking.randomMoviesQuote { (quote, error) in
@@ -142,10 +183,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     completionHandler(.Failed)
                     return
                 }
-                
+                dispatch_async(dispatch_get_main_queue()) {
                 self.quoteLabel.text = quote.text
                 self.authorLabel.text = quote.author
                 completionHandler(.NewData)
+                }
             }
         }
     }
